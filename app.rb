@@ -1,7 +1,5 @@
 require 'yaml'
-ROUTES = YAML.load(File.read(File.join(File.dirname(__FILE__), "app", "routes.yml")))
-
-require "./lib/router"
+require "./lib/boot"
 
 class App
   attr_reader :router
@@ -13,5 +11,9 @@ class App
   def call(env)
     result = router.resolve(env)
     [result.status, result.headers, result.content]
+  end
+
+  def self.root
+    File.dirname(__FILE__)
   end
 end

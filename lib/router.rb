@@ -1,4 +1,4 @@
-class Router  
+class Router
   attr_reader :routes
 
   def initialize(routes)
@@ -7,7 +7,6 @@ class Router
 
   def resolve(env)
     path = env['REQUEST_PATH']
-    puts(path)
     if routes.key?(path)
       controller(routes[path]).call
     else
@@ -19,9 +18,9 @@ class Router
     Controller.new.internal_error
   end
 
-  private def controller(string) 
+  private def controller(string)
     controller_name, action_name = string.split('#')
-    klass = Object.const_get "#{controller_name.capitalize}Controller"
+    klass = Object.const_get("#{controller_name.capitalize}Controller", Class.new)
     klass.new(name: controller_name, action: action_name.to_sym)
   end
 end
