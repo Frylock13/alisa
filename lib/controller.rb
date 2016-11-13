@@ -15,10 +15,6 @@ class Controller
     self
   end
 
-  def template
-    Slim::Template.new(File.join(App.root, 'app', 'views', "#{self.name}", "#{self.action}.slim"))  
-  end
-
   def not_found
     self.status = 404
     self.headers = {}
@@ -31,5 +27,9 @@ class Controller
     self.headers = {}
     self.content = ["Internal error"]
     self
+  end
+
+  private def template
+    Slim::Template.new(File.join(App.root, 'app', 'views', "#{name}", "#{action}.slim"))  
   end
 end
