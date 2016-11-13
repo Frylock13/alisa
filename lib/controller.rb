@@ -29,7 +29,7 @@ class Controller
     self
   end
 
-  private def template
-    Slim::Template.new(File.join(App.root, 'app', 'views', "#{name}", "#{action}.slim"))  
+  def template
+    Slim::Template.new(File.join(App.root, 'app', 'views', "#{self.name}", "#{self.action}.slim"))
   end
 end

@@ -4,5 +4,7 @@ ruby '2.3.1'
 
 gem 'rack'
 gem 'puma'
+gem 'slim'
 gem 'sequel'
 gem 'sqlite3'
+gem 'byebug'
